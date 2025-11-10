@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sistema de Transferências</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Sistema de Controle de Transferências</h1>
+    </div>
+
+    <!-- ÚLTIMA TRANSFERÊNCIA EM DESTAQUE -->
+    <div id="ultimo-registro" class="ultimo-registro" style="display: none;">
+        <h3>ÚLTIMA TRANSFERÊNCIA:</h3>
+        <div style="font-size: 18px;">
+            <strong id="ultimo-colaborador"></strong> -
+            <span id="ultimo-setor"></span> -
+            <span id="ultimo-canal"></span>
+            <span style="color: #666; font-size: 14px;">
+                às <span id="ultimo-hora"></span>
+            </span>
+        </div>
+    </div>
+
+    <div class="container-flex">
+        <div class="col-left">
+            <!-- FORMULÁRIO DE REGISTRO -->
+            <div class="form-container">
+                <h2>📝 Registrar Transferência</h2>
+                <form id="form-transferencia">
+                    <label><strong>👤 Colaborador:</strong></label><br>
+                    <select id="select-colaborador" name="colaborador_id" required>
+                        {% for colaborador in colaboradores %}
+                        <option value="{{ colaborador.id }}">{{ colaborador.nome }} ({{ colaborador.setor }})</option>
+                        {% endfor %}
+                    </select><br><br>
+
+                    <label><strong>📞 Canal:</strong></label><br>
+                    <input type="radio" name="canal" value="WhatsApp" required> 📱 WhatsApp
+                    <input type="radio" name="canal" value="Instagram" style="margin-left: 20px;"> 📷 Instagram<br><br>
+
+                    <button type="submit" class="btn">✅ REGISTRAR TRANSFERÊNCIA</button>
+                    <div id="mensagem" class="mensagem" style="display: none;"></div>
+                </form>
+            </div>
+
+            <!-- TOTAIS POR COLABORADOR -->
+            <div class="totais-container">
+                <h2>Total por Colaborador</h2>
+                <div id="totais-colaboradores">
+                    <p>📝 Nenhuma transferência registrada ainda.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-right">
+            <!-- HISTÓRICO RECENTE -->
+            <div class="historico">
+                <h3>📋 Histórico Recente (últimas 10)</h3>
+                <div id="historico-recente">
+                    <p>Nenhuma transferência no histórico.</p>
+                </div>
+            </div>
+
+            <!-- ESTATÍSTICAS DO DIA -->
+            <div class="historico">
+                <h3>📅 Resumo de Hoje</h3>
+                <div id="resumo-hoje" style="text-align: center;">
+                    <p>Carregando...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÃO PARA ABRIR EDIÇÃO -->
+    <div style="text-align: center; margin: 20px 0;">
+        <button id="btn-abrir-edicao" class="btn" style="background: #17a2b8;">📋 Gerenciar Transferências</button>
+    </div>
+
+    <!-- BOTÃO DE RELATÓRIO DIÁRIO -->
+    <div style="text-align: center; margin: 20px 0; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+        <h3>📊 Relatório Diário Completo</h3>
+        <button id="btn-exportar" class="btn" style="background: #28a745; font-size: 18px; padding: 15px 30px;">
+            📋 Gerar Relatório do Dia
+        </button>
+        <p style="color: #666; font-size: 14px; margin-top: 10px;">
+            ⚡ Inclui totais por colaborador e lista detalhada de todas as transferências de hoje
+        </p>
+        <div id="mensagem-exportacao" class="mensagem" style="display: none; margin-top: 10px;"></div>
+    </div>
+
+    <!-- ESTATÍSTICAS GERAIS -->
+    <div id="estatisticas-gerais" class="stats" style="display: none;">
+        <!-- Será preenchido via JavaScript -->
+    </div>
+
+    <!-- MODAL DE EDIÇÃO -->
+    <div id="modal-editar" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>✏️ Editar Transferência</h3>
+            <form id="form-editar">
+                <input type="hidden" id="editar-id">
+
+                <label><strong>Data:</strong></label>
+                <input type="text" id="editar-data" readonly style="width: 100%; padding: 8px; margin: 5px 0;">
+
+                <label><strong>👤 Colaborador:</strong></label>
+                <select id="editar-colaborador" name="colaborador_id" required
+                    style="width: 100%; padding: 8px; margin: 5px 0;">
+                    <!-- Preenchido via JavaScript -->
+                </select>
+
+                <label><strong>📞 Canal:</strong></label><br>
+                <input type="radio" name="editar-canal" value="WhatsApp" required> 📱 WhatsApp
+                <input type="radio" name="editar-canal" value="Instagram" style="margin-left: 20px;"> 📷
+                Instagram<br><br>
+
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn" style="background: #28a745;">💾 Salvar</button>
+                    <button type="button" id="btn-excluir" class="btn" style="background: #dc3545;">🗑️ Excluir</button>
+                    <button type="button" id="btn-cancelar" class="btn" style="background: #6c757d;">❌ Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,223 @@
+body { 
+    font-family: Arial, sans-serif; 
+    max-width: 1000px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    background-color: #f8f9fa;
+}
+.header { 
+    text-align: center; 
+    margin-bottom: 30px; 
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.form-container { 
+    background: white; 
+    padding: 20px; 
+    border-radius: 10px; 
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.totais-container { 
+    margin-top: 30px; 
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.vendedor-row { 
+    display: flex; 
+    justify-content: space-between; 
+    padding: 10px; 
+    border-bottom: 1px solid #ddd; 
+}
+.vendedor-name { 
+    font-weight: bold; 
+}
+.btn { 
+    background: #4CAF50; 
+    color: white; 
+    padding: 12px 24px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px;
+}
+.btn:hover { 
+    background: #45a049; 
+}
+.btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+.stats { 
+    display: flex; 
+    justify-content: space-around; 
+    margin: 20px 0; 
+}
+.stat-box { 
+    text-align: center; 
+    padding: 20px; 
+    background: white; 
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex: 1;
+    margin: 0 10px;
+}
+
+/* ESTILOS DO MODAL */
+.modal { 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.5); 
+}
+.modal-content { 
+    background-color: white; 
+    margin: 5% auto; 
+    padding: 20px; 
+    border-radius: 10px; 
+    width: 90%; 
+    max-width: 500px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+}
+.close { 
+    color: #aaa; 
+    float: right; 
+    font-size: 28px; 
+    font-weight: bold; 
+    cursor: pointer; 
+}
+.close:hover { 
+    color: black; 
+}
+
+/* ÚLTIMO REGISTRO */
+.ultimo-registro { 
+    background: #fff3cd; 
+    border: 2px solid #ffc107; 
+    padding: 20px; 
+    border-radius: 10px; 
+    margin: 15px 0;
+    animation: pulse 2s infinite;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+@keyframes pulse {
+    0% { background-color: #fff3cd; }
+    50% { background-color: #ffeaa7; }
+    100% { background-color: #fff3cd; }
+}
+.historico { 
+    background: white; 
+    padding: 20px; 
+    border-radius: 10px; 
+    margin: 15px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.registro-item { 
+    padding: 10px; 
+    border-bottom: 1px solid #dee2e6; 
+    display: flex; 
+    justify-content: space-between;
+}
+.registro-item:last-child { border-bottom: none; }
+.hoje { background: #d4edda; font-weight: bold; }
+.badge { 
+    background: #17a2b8; 
+    color: white; 
+    padding: 2px 8px; 
+    border-radius: 10px; 
+    font-size: 12px;
+}
+.container-flex { 
+    display: flex; 
+    gap: 20px; 
+}
+.col-left { 
+    flex: 1; 
+}
+.col-right { 
+    flex: 1; 
+}
+select, input[type="radio"] {
+    margin: 5px 0;
+}
+.mensagem {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+.mensagem.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.mensagem.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .container-flex {
+        flex-direction: column;
+    }
+    .stats {
+        flex-direction: column;
+    }
+    .stat-box {
+        margin: 10px 0;
+    }
+}
+
+/* ESTILOS PARA A LISTA DE TRANSFERÊNCIAS */
+.lista-transferencias {
+    max-height: 400px;
+    overflow-y: auto;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.transferencia-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transferencia-item:last-child {
+    border-bottom: none;
+}
+
+.transferencia-info {
+    flex: 1;
+}
+
+.transferencia-acoes {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-editar {
+    background: #ffc107;
+    color: black;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-editar:hover {
+    background: #e0a800;
+}
